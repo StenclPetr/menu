@@ -1,0 +1,80 @@
+{* This is the welcome page, you can delete it *}
+
+{block content}
+
+	<div class="container">
+	</div>
+	<script type="text/javascript" src="{$basePath}www/js/jquery-3.4.1.min.js"></script>
+
+	<div class="container">
+		<table class="table table-striped table-responsive-lg">
+			<thead>
+			<tr>
+				<th scope="col">Název</th>
+				<th scope="col">Datum</th>
+				<th scope="col">Status</th>
+				<th scope="col">Alergeny</th>
+				<th scope="col"></th>
+				<th scope="col"><a n:href="pridat!" class="btn btn-success">Přidat</a></th>
+			</tr>
+			</thead>
+			<tbody>
+			{foreach $posts as $post}
+			<tr>
+				<td id="nazev">{$post->nazev}</td>
+				<td>{$post->datum|date:'j.m.Y'}</td>
+				<td>
+					{if $post->status == 1}
+						<input type="checkbox" checked="checked" disabled >
+					{elseif $post->status == 0}
+						<input type="checkbox" disabled>
+					{/if}
+				</td>
+				<td>
+					{foreach $alers as $aler}
+						{if $post->id == $aler->id_menu}
+							{$aler->nazev . ','}
+						{/if}
+					{/foreach}
+				</td>
+
+				<td><a n:href="upravit!, $post->id" class="btn btn-light btn-sm" >Upravit</a></td>
+				<td><a n:href="smazat!, $post->id" class="btn btn-danger btn-sm" id="dialog">Odstranit</a></td>
+
+			</tr>
+			{/foreach}
+			</tbody>
+		</table>
+	</div>
+
+	<div class="container">
+		<h5 class="pagination justify-content-center">{$paginator->getPage()}</h5>
+	</div>
+	<div class="container">
+
+
+		<ul class="pagination justify-content-center">
+		{if !$paginator->isFirst()}
+			<li class="page-item"><a class="page-link" n:href="default, 1">První</a></li>
+			<li class="page-item"><a class="page-link" n:href="default, $paginator->page-1">Předchozí</a></li>
+		{/if}
+
+
+		{if !$paginator->isLast()}
+			<li class="page-item"><a class="page-link" n:href="default, $paginator->page+1">Další</a></li>
+			<li class="page-item"><a class="page-link" n:href="default, $paginator->pageCount">Poslední</a></li>
+		{/if}
+		</ul>
+	</div>
+
+
+
+<script>
+
+
+
+</script>
+
+{/block}
+
+

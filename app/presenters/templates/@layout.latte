@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+
+{*	<title>{ifset title}{include title|stripHtml} | {/ifset}Nette Web</title>*}
+
+    <script type="text/javascript" src="{$basePath}/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="{$basePath}/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="{$basePath}/js/bootstrap.js"></script>
+    <script type="text/javascript" src="{$basePath}/js/jquery-ui.min.js"></script>
+    <link href="{$basePath}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$basePath}/css/jquery-ui.theme.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+    <link rel="stylesheet" href="{$basePath}/css/style.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+          integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+</head>
+
+<body>
+
+        <nav class="container navbar navbar-expand-lg navbar-light bg-light">
+
+            <nav class="container navbar-brand">
+                <img src="{$basePath}/img/logo menu.jpg" width="50" height="70" class="d-inline-block align-top" alt="">
+                <h1 n:block="title" class="container card-title col">{$title}</h1>
+                <span  class="nav-item">
+{*                    <h6 id="logon" n:block="logon" class="container col-md-auto text-right font-weight-lighter">{$logon . ' uživatel'}</h6>*}
+{*                    		<a n:href="odhlasit!" class="btn btn-light btn-sm" >odhlásit</a>*}
+
+                </span>
+            </nav>
+        </nav>
+
+        <nav class="container navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" n:href="Homepage:default">Domů</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" n:href="Alergenypage:alergeny">Alergeny</a>
+                    </li>
+
+
+                </ul>
+            </div>
+            <span class="nav-item">
+{*                <a class="nav-item nav-link" n:href="Registracepage:registrace">Registrace</a>*}
+                <a n:href="Registracepage:registrace" class="btn btn-outline-light btn-sm active" role="button" aria-pressed="true">Registrace</a>
+            </span>
+
+            <span class="nav-item">
+{*                <a class="nav-item nav-link" n:href="Registracepage:registrace">Přihlášení</a>*}
+                <a n:href="Loginpage:login" class="btn btn-outline-light btn-sm active" role="button" aria-pressed="true">Přihlášení</a>
+            </span>
+
+        </nav>
+        </br>
+		<div class="container ">
+			<h1> </h1>
+			<div n:class="flash, $flash->type" n:foreach="$flashes as $flash" >{$flash->message}</div>
+			<h1> </h1>
+		</div>
+
+        </br>
+
+        <script>
+{*            {switch $logon}*}
+{*            {case Přihlášený}*}
+{*            $('#logon').addClass('bg-succesalert alert-dangers text-white ');*}
+
+{*            {case Nepřihlášený}*}
+{*            $('#logon').addClass('bg-danger text-white ');*}
+
+{*            {default}*}
+{*            jinak*}
+{*            {/switch}*}
+
+
+        </script>
+
+	{include content}
+
+
+
+	{block scripts}
+
+    {/block}
+
+</body>
+
+</html>

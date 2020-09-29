@@ -1,0 +1,71 @@
+
+{block content}
+
+
+
+    <form n:name=detailForm class=form>
+            <div class="container">
+                <table class="table table-responsive-lg">
+                    <tr>
+                        <td>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label n:name=nazev>Název</label>
+                                    <input class="form-control" n:name="nazev" placeholder="Název jídla" >
+                                </div>
+                                <div class="form-group">
+                                    <label n:name=datum>Datum</label>
+                                    <input id="datum" class="form-control" n:name="datum" placeholder="Datum">
+                                </div>
+                                <div class="form-group form-check">
+                                    <input n:name=status type="checkbox" class="form-check-input" id="statusCheck">
+                                    <label n:name="status" class="form-check-label" for="exampleCheck1" id="lblstatus">Neaktivní</label>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col">
+                                <div class="form-group form-check">
+
+                                        {foreach $gen_alergeny as $gen_alergen}
+                                            <div class="input-group mb-3">
+                                                <input n:name="alergeny:$gen_alergen->id" type="checkbox" class="form-check-input" >
+                                                <label n:name="alergeny" aria-label="Text input with checkbox" class="form-check-label" for="exampleCheck1">{$gen_alergen->nazev}</label>
+                                            </div>
+                                        {/foreach}
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            <button type="submit" n:name=save class="btn btn-primary">Uložit</button>
+                <a n:href="Homepage:default" class="btn btn-primary text-white" >Zrušit</a>
+            </div>
+
+        </form>
+
+{*    <div id="dialog" title="Základní dialog">*}
+{*        <p>Toto je základní dialog.</p>*}
+{*    </div>*}
+
+    <script n:syntax="off">
+
+        $( "#statusCheck" ).click(function() {
+            if($(this).prop("checked") == true) {
+                $( "#lblstatus" ).text("Aktivní");
+            }
+            else if($(this).prop("checked") == false) {
+                $( "#lblstatus" ).text("Neaktivní");
+            }
+        });
+
+        // $(function() {
+        //     $( "#dialog" ).dialog();
+        // });
+        $(function() {
+            $( "#datum" ).datepicker({dateFormat: "dd.mm.yy"});
+        });
+
+    </script>
+
+{/block}

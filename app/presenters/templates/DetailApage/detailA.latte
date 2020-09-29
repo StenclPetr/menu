@@ -1,0 +1,27 @@
+
+{block content}
+
+    <form n:name=detailForm class=form>
+            <div class="container">
+                <div class="col">
+                    <div class="form-group">
+                        <label n:name=nazev>Název</label>
+                        <input class="form-control" n:name="nazev" value="{$gen_alergeny->nazev}" >
+                    </div>
+                    <div class="form-group">
+                        <label n:name=nazev>Výskyt</label>
+                        <input class="form-control" n:name="vyskyt" value="{$gen_alergeny->vyskyt}">
+                    </div>
+
+                </div>
+            <button type="submit" n:name=save class="btn btn-primary">Uložit</button>
+                <a n:href="Alergenypage:alergeny" class="btn btn-primary text-white" >Zrušit</a>
+            </div>
+        </form>
+
+    <script n:syntax="off">
+
+
+    </script>
+
+{/block}
